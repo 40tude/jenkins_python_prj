@@ -12,9 +12,9 @@ pipeline {
         stage('Setup') {
             steps {
                 echo 'Installing dependencies...'
-                bat '''
-                    python --version
-                    pip install --upgrade pip
+                sh '''
+                    python3 --version
+                    pip3 install --upgrade pip
                 '''
             }
         }
@@ -22,9 +22,9 @@ pipeline {
         stage('Lint') {
             steps {
                 echo 'Running code quality checks...'
-                bat '''
-                    pip install pylint
-                    pylint app.py || exit 0
+                sh '''
+                    pip3 install pylint
+                    pylint app.py || true
                 '''
             }
         }
@@ -32,14 +32,14 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                bat 'python -m unittest test_app.py -v'
+                sh 'python3 -m unittest test_app.py -v'
             }
         }
         
         stage('Run Application') {
             steps {
                 echo 'Running the application...'
-                bat 'python app.py'
+                sh 'python3 app.py'
             }
         }
     }
