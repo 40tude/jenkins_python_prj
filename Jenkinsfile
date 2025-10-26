@@ -14,7 +14,7 @@ pipeline {
                 echo 'Installing dependencies...'
                 sh '''
                     python3 --version
-                    pip3 install --upgrade pip
+                    python3 -m pip install --upgrade pip
                 '''
             }
         }
@@ -23,8 +23,8 @@ pipeline {
             steps {
                 echo 'Running code quality checks...'
                 sh '''
-                    pip3 install pylint
-                    pylint app.py || true
+                    python3 -m pip install pylint
+                    python3 -m pylint app.py || true
                 '''
             }
         }
