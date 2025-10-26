@@ -63,7 +63,8 @@ pipeline {
         always {
             echo 'Pipeline completed!'
             // Archive test results if they exist
-            junit '**/test-results.xml' allowEmptyResults: true
+            // junit '**/test-results.xml' allowEmptyResults: true
+            junit(testResults: '**/test-results.xml', allowEmptyResults: true)
         }
         success {
             echo '✅ All tests passed successfully!'
